@@ -19,6 +19,9 @@ impl IntoResponse for AppError {
             AppError::Internal(_) => {
                 (StatusCode::INTERNAL_SERVER_ERROR, "Internal error").into_response()
             }
+            AppError::Validation(message) => (StatusCode::BAD_REQUEST, message).into_response(),
+            AppError::Conflict(message) => (StatusCode::CONFLICT, message).into_response(),
+            AppError::Unauthorized(_) => (StatusCode::UNAUTHORIZED, "Unauthorized").into_response(),
         }
     }
 }
