@@ -1,3 +1,5 @@
+use std::net::SocketAddr;
+
 use dotenvy::dotenv;
 use tracing::info;
 
@@ -17,7 +19,14 @@ async fn main() -> anyhow::Result<()> {
 
     info!("Backend listening at {}", &listener.local_addr().unwrap());
 
-    axum::serve(listener, app).await.unwrap();
+    // `with_connect_info` is required for tower_governor's per-IP rate limiting on
+    // /login and /register to extract the peer address.
+    axum::serve(
+        listener,
+        app.into_make_service_with_connect_info::<SocketAddr>(),
+    )
+    .await
+    .unwrap();
 
     Ok(())
 }

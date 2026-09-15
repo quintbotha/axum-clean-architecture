@@ -15,12 +15,18 @@ anyhow = "1"
 argon2 = "0.5.3"
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt", "std", "json"] }
-tower-http = { version = "0.6", features = ["trace", "cors"] }
+tower-http = { version = "0.6", features = ["trace", "cors", "set-header"] }
 secrecy = { version = "0.10", features = ["serde"] }
 uuid = { version = "1.18.0", features = ["serde", "v4"] }
 chrono = { version = "0.4.41", features = ["serde"] }
 thiserror = "2.0"
 async-trait = "0.1.89"
-axum-extra = { version = "0.10", features = ["cookie"] }
+axum-extra = { version = "0.10", features = ["cookie", "typed-header"] }
 time = "0.3"
+jsonwebtoken = { version = "11", default-features = false, features = ["rust_crypto"] }
+sha2 = "0.10"
+base64 = "0.22"
+utoipa = { version = "5.5.0", features = ["uuid", "chrono"] }
+utoipa-swagger-ui = { version = "9.0.2", features = ["axum"] }
+tower_governor = { version = "0.8.0", default-features = false, features = ["axum"] }
 

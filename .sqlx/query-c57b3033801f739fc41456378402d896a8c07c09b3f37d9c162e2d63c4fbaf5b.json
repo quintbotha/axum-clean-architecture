@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE refresh_tokens SET revoked_at = CURRENT_TIMESTAMP, replaced_by = $1 WHERE id = $2 AND revoked_at IS NULL",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Uuid"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "c57b3033801f739fc41456378402d896a8c07c09b3f37d9c162e2d63c4fbaf5b"
+}
